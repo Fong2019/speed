@@ -170,6 +170,14 @@ function arg($name = null, $default = null, $trim = false) {
 	}
 	return $arg;
 }
+function args(array $name,$request) {
+    $data=$request=='get'?$_GET:($request=='post'?$_POST:$_REQUEST);
+    $item = [];
+    foreach ($name as $key) {
+		$item[$key]=isset($data[$key])?trim($data[$key]):null;
+    }
+    return $item;
+}
 
 class Controller{
 	public $layout;
